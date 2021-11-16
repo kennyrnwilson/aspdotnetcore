@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>4d177f60-d4de-4746-8d91-3b25fd53a2f7</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+	
+
+
+	<!--<Target Name="NSwag" BeforeTargets="PrepareForBuild">
+		<Exec Command="$(NSwagExe) run $(ProjectDir)\server-api\nswag.json" />
+	</Target>-->
+
+	<Target Name="NSwag" BeforeTargets="BeforeBuild">
+		<!--<Message Importance="High" Text="$(NSwagExe_Net50) run nswag.json /variables:Configuration=$(Configuration)" />-->
+
+		<Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net60) run  $(ProjectDir)\server-api\nswag.json" />
+
+		<!--<Delete Files="$(ProjectDir)\obj\$(MSBuildProjectFile).NSwag.targets" />-->
+		<!-- This thingy trigger project rebuild -->
+	</Target>
+
+
+	<ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="NSwag.Commands" Version="13.14.4" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.14.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
+  </ItemGroup>
+
+</Project>
