@@ -1,0 +1,18 @@
+{
+  "runtime": "Net60",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "swagger.json"
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "output": "ApiClient.cs",
+      "className": "ApiClient",
+      "namespace": "router.Api",
+      "generateClientInterfaces": true,
+      "useBaseUrl": false,
+      "generateBaseUrlProperty": true
+    }
+  }
+}

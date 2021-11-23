@@ -1,8 +1,29 @@
-# .NET Core Client and Server
-This example shows how to wire together a .NET Core WebAPI Server and a .NET core WebAPI Client. 
+# Service to Service HTTP
+This simple example shows how to connect one .NET core service to another using HTTP. The front service is just a router which routes requests to the API. 
 
-## Running the examples 
-We have two solutions. First run up the server from Visual Studio using the **Docker** target. Now run the client. For the client use the **client** target. Note we do not use the Docker target for the client as we are using HTTPS and taking default credentials from the windows machine. 
+![Server-Server HTTP](/docs/images/server-server-http.png)
 
-Details on how to configure docker targets is [Container Launch Settings](https://docs.microsoft.com/en-us/visualstudio/containers/container-launch-settings?view=vs-2022)
+The sample consists of two solutions that run up the two processes
+
+* api
+* router 
+
+
+Open each in visual studio and run up them up. The code in the router that initializes the HTTPClient is as follows
+
+```csharp
+builder.Services.AddHttpClient<IServiceClient, ServiceClient>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:8600");
+});
+
+```
+
+And the ServiceClient.cs looks like this 
+
+[ServiceClient.cs](./router/ServiceClient.cs)
+
+We simply inject the service client into the controller and use it
+
+[HelloController.cs](./router/Controllers/HelloController.cs)
 
