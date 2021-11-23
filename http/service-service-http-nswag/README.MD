@@ -6,7 +6,7 @@ Shows how to wire a .NET service to another .NET HTTP Service using NSwag to gen
 
 The runtime topology is as follows.
 
-![Server-Server HTTP](/docs/images/server-server-http-nswag.png)
+![Server-Server HTTP](./docs/images/server-server-http-nswag.png)
 
 To get both process running open the solutions in visual studio
 

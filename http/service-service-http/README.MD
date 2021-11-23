@@ -1,7 +1,7 @@
 # Service to Service HTTP
 This simple example shows how to connect one .NET core service to another using HTTP. The front service is just a router which routes requests to the API. 
 
-![Server-Server HTTP](/docs/images/server-server-http.png)
+![Server-Server HTTP](./docs/images/server-server-http.png)
 
 The sample consists of two solutions that run up the two processes
 
